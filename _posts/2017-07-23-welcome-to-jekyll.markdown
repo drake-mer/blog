@@ -1,14 +1,17 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "David's blog -- first post"
 date:   2017-07-23 14:20:34 +0200
 categories: jekyll update
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+After going through the documentation to deploy a zinnia-django-blog
+on a remote debian VPS, I preferred to go the easy way by deploying 
+a static blog based on simple git-hooks for automatic publication.
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+This is going to be much more rewarding I believe, and the Jekyll
+engine seems powerful enough to allow a lot of tweaking on the way.
 
-Jekyll also offers powerful support for code snippets:
+I hope I will be able then to learn some ruby.
 
 {% highlight ruby %}
 def print_hi(name)
