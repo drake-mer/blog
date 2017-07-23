@@ -1,19 +1,14 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: Who Am I?
+permalink: /dkremer/
 ---
 
-This is the base Jekyll theme. 
-You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+I am David, I live in France, I currently work as a developer for a Cloud Provider
+near the city of Paris.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+The programming languages I use the most are Haskell and Python, currently I am digging
+into Ruby and Scala. I love programming and this art never cease to amaze me.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+If you are interested on my background, please checkout my
+[resume][http://david-kremer.fr/resume]
