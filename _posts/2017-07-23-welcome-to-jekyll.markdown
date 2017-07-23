@@ -22,7 +22,7 @@ There is other static blog generator around, coded with many languages, but
 Jekyll is at the moment the easiest to start with and to integrate with my workflow.
 
 I am not, at the moment, really familiar with the ruby environment,
-but running `gem install jekyll` so far has not given me any problem. Some dependancies
+but running `gem install jekyll` so far has not given me any problem. Some dependencies
 had to be installed on debian to be able to build the blog engine, but I limited the import
 debian packages to a strict minimum by installing everything with `gem` in my user folder.
 
@@ -31,7 +31,7 @@ to the `requirements.txt`
 python file, but the Ruby ecosystem seems a little bit neater and sophisticated.
 
 Hopefully also, there is not a ton of build systems for Ruby as there is in python,
-even if [`pip`][https://pypi.python.org/pypi/pip] is now the preferred way to manage the
+even if [pip][pip] is now the preferred way to manage the
 dependencies of a project as far I can tell.
 
 To install the gem locally, you can follow the indications
@@ -79,3 +79,4 @@ Ruby as well to get the job done.
 [jekyll-talk]: https://talk.jekyllrb.com/
 [zinnia-django-blog]: https://github.com/Fantomas42/django-blog-zinnia
 [wiki-gem-archlinux]: https://wiki.archlinux.org/index.php/ruby
+[pip]: https://pypi.python.org/pypi/pip
