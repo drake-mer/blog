@@ -16,6 +16,6 @@ My primary field of study is physics and I finished a [PhD][phd-raman] in 2014 a
 and spectral properties of such gases. The [manuscript][phd-publication] exists only in french, but you can
 checkout the articles if needed.
 
-[resume]: {{ site.url }}/resume/cv.pdf
+[resume]: {{site.url}}/resume/cv.pdf
 [phd-raman]: http://www.theses.fr/2014ANGE0004
 [phd-publication]: https://tel.archives-ouvertes.fr/tel-01052857/document
