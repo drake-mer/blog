@@ -3,6 +3,7 @@ layout: post
 title:  "Running a Jekyll Blog on Debian 9"
 date:   2017-07-23 14:20:34 +0200
 categories: jekyll update debian static blogging
+published: false
 ---
 
 I started by sailing through a sea of documentation to automate the deployment
