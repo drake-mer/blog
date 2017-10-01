@@ -1,42 +1,59 @@
 ---
 layout: default
-title:  "Abstract Syntaxic Tree build in Haskell (or evaluation strategy)"
-date:   2017-09-30 14:20:34 +0200
+title:  "Precedence order of evaluation for AST building in Haskell"
+date:   2017-10-01 19:20:34 +0200
 categories: haskell blogging
 ---
 
-
-
-# A quick reminder about the Haskell type system
-
 ## Introduction
 
-The motivation behind this blog post are _pure_. The style aims to be simple
+The motivation behind this blog post are 
+[_pure_](https://en.wikipedia.org/wiki/Purely_functional_programming) :). 
+I wanted to write a page of drills for practicing monads in Haskell, and I
+wanted to be accessible, so as I started to write things about type annotations,
+I noticed that somethings here couldn't be left out and had to be written down.
+The result is this article, covering to some extents type annotation and precedence
+in Haskell, enough to get started and make the most out of the type system.
+
+The subtility of the evaluation performed on the abstract syntax tree are let
+out, we aim just to clarify and illustrate some of the most notable features
+of the Haskell syntax.
+
+The style aims to be simple
 and understandable by almost anybody who has done a little bit of programming
-before. It was written a sunday afternoon after going for another subject. 
+before. It was written a sunday afternoon after going for another subject 
 Actually, the notions covered here are quite important and even fundamental
-for at least writing good Haskell code.
+for at least writing good (working) Haskell code.
 
 ## Type system and annotations
 
-At this point, I will assume that you know what type signature are, but a short 
-reminder could be of use. Haskell is using type annotation, which are however
-not mandatory since non-annotated code may be executed through type inference 
-whenever it is possible (sometimes it is not). 
+### What are type signatures ?
+
+As for many languages, when writing a function, the type of its arguments must be 
+known before actually running the program. This is known as static typing.
+
+To tell what are the types of the variables are in an expression, Haskell is using 
+type annotation, which are however not mandatory since the compiler may deduce
+the type of the variables in an expression through **type inference**, 
+whenever it is possible \(sometimes it is not\). 
 
 In any case, it is often encouraged to write annotations as much as possible.
 
-Let us consider a function of two variables, say `x` and `y`. The mathematical
+Let us consider a function of two variables, say _x_
+and _y_. The mathematical
 notation for it is often viewed as:
 
 $$ 
-f: \begin{case} 
+f: \begin{cases} 
         \mathbb{R}^2 &\to \mathbb{R} \\ 
-             (x,y)   &\to f(x,y)
+             x,y   &\mapsto f(x,y)
    \end{cases}
 $$
 
-Well, the pure analog for the set of real numbers in computer science is the type
+Which tells us that the function takes as an input two real numbers and returns
+us a real number (we say it is a function from R² to R).
+
+The pure analog for the set of real numbers in computer science is the type
 float. So $x$ and $y$ would have respectively type `Float` and `Float`.
 
 You would define the arguments of this function in the GHCi REPL like this:
@@ -61,14 +78,19 @@ y=2
 ```
 
 Now, functions need their type annotations as well. But we will need to bring some
-conceptual explanation about _curryfication_ for the sake of the non-informed reader.
+conceptual explanation about _curryfication_. The word itself comes from a mathematician,
+whose name is fortuitously [Haskell Curry](https://fr.wikipedia.org/wiki/Haskell_Curry).
 
-Let us bring this problem from a mathematical point of view. If I asked you to tell me
-what is \$$ g:\begin{cases} \mathbb{R}\to\mathbb{R}\\ y\to f(3,y) $$, what would be your answer ? 
+If I asked you to tell me
+what is the following function:
 
-You would probably tell me that \$$f$$ is a function
+$$ g:\begin{cases} \mathbb{R}&\to\mathbb{R}\\ y&\mapsto f(3,y)\end{cases} $$
+
+What would be your answer ? 
+
+You would probably tell me that $f$ is a function
 of a real number, $y$, into the set of real numbers. Actually, it would simply be the function 
-_f_ for a fixed _x_. By fixing _x_ to a predefined value, we obtain another function of one single
+$f$ for a fixed value of $x$. By fixing _x_ to a predefined value, we obtain another function of one single
 variable. This is sometimes used when you calculate partial derivatives of a function (remembering
 first grade calculus course).
 
@@ -79,8 +101,8 @@ easily obtain the later function (let us call it `g`) by fixing $x$, that is to 
 g = f 3  
 ```
 
-But then, let's go back to the type annotation problem once more. \$$g$$ is a function from the
-real set to the real set. We said later that the analog of \$$\mathbb{R}$$ from the point of view
+But then, let's go back to the type annotation problem once more. $g$ is a function from the
+real set to the real set. We said later that the analog of $\mathbb{R}$ from the point of view
 of the computer is `Float` (or `Double` for what matters, but let's keep it straight to the 
 _point_).
 
@@ -125,8 +147,8 @@ real numbers (let us call it _h_ this time).
 The usual mathematical definition would be:
 
 $$ 
-h : \begin{cases} \mathbb{R}^3 \to \mathbb{R} \\
-h: x, y, z \to h(x,y,z)\end{cases}
+h : \begin{cases} \mathbb{R}^3 &\to \mathbb{R} \\
+x, y, z &\mapsto h(x,y,z)\end{cases}
 $$
 
 So, we are going to take back our later argument and try to see if, by writing naively the 
@@ -309,13 +331,16 @@ A composition of function makes use of a function that take a function and then 
 another function. Rember the definition of `$`, it does just that. Actually, the sole
 purpose of `$` is to be an infix operator and to force evaluation precedence, but by
 himself, it quite does nothing. We might even say that this is kind of the identity
-operators for functions. Indeed, (($) take 10) is just (take 10). And we don't even
-need to write (($) take 10). Indeed, we have `(($) take)` the same as `take`, and then
+operators for functions. Indeed, `(($) take 10)` is just `(take 10)`. And we don't even
+need to write `(($) take 10)`. Indeed, we have `(($) take)` the same as `take`, and then
 evaluation proceeds as usual for the remaining arguments.
 
 You can try with function of 2, 3 or even 15 variables:
 
-`(($) (+) a b)` is `(((($) (+)) a) b)==((+) a) b`
+
+The expression `(($) (+) a b)` is merely `( ( ( ($) (+) ) a ) b )`, and since
+`$` is the identity for a function, it gives us simply `( (+) a ) b` for the AST.
+
 
 etc.
 
@@ -334,11 +359,17 @@ res = f1.f2 [1..]
 where `.` is another infix operator, called _function composition operator_
 
 Let's have a look at his type:
+
 `(.) :: (a -> b) -> (b -> c) -> a -> c`
+
 Or using our special parenthetizing:
+
 `(.) :: (a -> b) -> ((b -> c) -> a -> c)`
+
 Then
+
 `(.) :: (a -> b) -> ((b -> c) -> (a -> c))`
+
 So, simply put, `.` takes two functions and return a third one,
 as you would expect from a function composition operator.
 
@@ -374,21 +405,23 @@ Let's invent an operator which would be, say, `(**)`.
 Since this in `infixr`, the right most part of the first operator is evaluated
 first.
 
-The `a ** b ** c` would actually be `a ** ( b ** ( c ) )
+The `a ** b ** c` would actually be 
+
+```haskell
+a ** ( b ** ( c ) )
+```
 
 And the operator precedence (fixity), the higher it is, the higher the operator
 has precedence.
 
 For example, in the previously seen expression:
 
-`take 10 . filter odd $ [1..9]`
+```haskell
+take 10 . filter odd $ [1..9]
+```
 
 The `.` (dot) is an `infixr 9` operator, and the `$` (dollar) is an `infixr 0` operator.
 
 This means that the arguments of `$` are always evaluated last, or in the last place.
 The right most part of two equivalent operators is evaluated first.
 
-The above expression then reads after successive computations:
-`(take 10 . filter odd) $ ([1..9])`
-`(((take 10) . (filter odd)) $ ([1..9]))`
-	 

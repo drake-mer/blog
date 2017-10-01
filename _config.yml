@@ -21,7 +21,7 @@ url: "http://david-kremer.fr" # the base hostname & protocol for your site, e.g.
 github_username:  elijahbal
 
 # Build settings
-markdown: kramdown
+markdown: maruku
 theme: minima
 plugins:
   - jekyll-feed
@@ -92,12 +92,12 @@ rdiscount:
 redcarpet:
   extensions: []
 
-kramdown:
-  auto_ids:       true
-  entity_output:  as_char
-  toc_levels:     1..6
-  smart_quotes:   lsquo,rsquo,ldquo,rdquo
-  input:          GFM
-  hard_wrap:      false
-  footnote_nr:    1
+  #kramdown:
+  # auto_ids:       true
+  # entity_output:  as_char
+  # toc_levels:     1..6
+  # smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  # input:          GFM
+  # hard_wrap:      false
+  # footnote_nr:    1
 
