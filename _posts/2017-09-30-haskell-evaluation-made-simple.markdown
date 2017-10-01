@@ -1,10 +1,11 @@
-------------------------
-layout: post
+---
+layout: default
 title:  "Abstract Syntaxic Tree build in Haskell (or evaluation strategy)"
 date:   2017-09-30 14:20:34 +0200
 categories: haskell blogging
-published: true
-------------------------
+---
+
+
 
 # A quick reminder about the Haskell type system
 
@@ -28,7 +29,12 @@ In any case, it is often encouraged to write annotations as much as possible.
 Let us consider a function of two variables, say `x` and `y`. The mathematical
 notation for it is often viewed as:
 
-$$ f:\begin{case} \mathbb{R} \to \mathbb{R} \\ (x,y) \to f(x,y) $$
+$$ 
+f: \begin{case} 
+        \mathbb{R}^2 &\to \mathbb{R} \\ 
+             (x,y)   &\to f(x,y)
+   \end{cases}
+$$
 
 Well, the pure analog for the set of real numbers in computer science is the type
 float. So $x$ and $y$ would have respectively type `Float` and `Float`.
@@ -58,13 +64,11 @@ Now, functions need their type annotations as well. But we will need to bring so
 conceptual explanation about _curryfication_ for the sake of the non-informed reader.
 
 Let us bring this problem from a mathematical point of view. If I asked you to tell me
-what is 
-$$g:\begin{cases} \mathbb{R}\to\mathbb{R}\\ y\to f(3,y)$$
-, what would be your answer ? 
+what is \$$ g:\begin{cases} \mathbb{R}\to\mathbb{R}\\ y\to f(3,y) $$, what would be your answer ? 
 
-You would probably tell me that $f$ is a function
+You would probably tell me that \$$f$$ is a function
 of a real number, $y$, into the set of real numbers. Actually, it would simply be the function 
-f for a fixed x. By fixing x to a predefined value, we obtain another function of one single
+_f_ for a fixed _x_. By fixing _x_ to a predefined value, we obtain another function of one single
 variable. This is sometimes used when you calculate partial derivatives of a function (remembering
 first grade calculus course).
 
@@ -75,8 +79,8 @@ easily obtain the later function (let us call it `g`) by fixing $x$, that is to 
 g = f 3  
 ```
 
-But then, let's go back to the type annotation problem once more. $g$ is a function from the
-real set to the real set. We said later that the analog of $\mathbb{R}$ from the point of view
+But then, let's go back to the type annotation problem once more. \$$g$$ is a function from the
+real set to the real set. We said later that the analog of \$$\mathbb{R}$$ from the point of view
 of the computer is `Float` (or `Double` for what matters, but let's keep it straight to the 
 _point_).
 
@@ -84,11 +88,11 @@ Well at this point, one can't help but give the type annotation: we would plainl
 with all the ASCII characters at hand:
 
 ```haskell
-g:: Float -> Float
+g :: Float -> Float
 g = f 3
 ```
 
-And then, moreover:
+And moreover:
 
 ```haskell
 f:: Float -> Float -> Float
@@ -97,7 +101,7 @@ f x y = x + y
 
 ## Type annotation for multi-variable function 
 
-Wait, WHAT?! What are all this arrows in the previous definition? Well, as it happens, you
+What are all this arrows in the previous definition? Well, as it happens, you
 can, coming from all I told previously, interprete them quite naively. You must actually read
 type definition from the left to the right (like in normal english). Moreover, the precedence
 of the arrows may be understood with the highest priority being let to the arrow at the farthest
@@ -130,9 +134,10 @@ parenthetised type annotation, we will find back the precedence rule I told you 
 
 Let us do it.
 
-So, we start by fixing x. Then we obtain kind of the function of two variables we previously
+So, we start by fixing _x_. Then we obtain kind of the function of two variables we previously
 had (_f_). We keep the parenthetized version of this later function (since we know it works plain),
 and we have so:
+
 ```haskell
 h :: Float -> ( Float -> (Float -> Float) )
 h x y z = x + y + z
@@ -144,9 +149,11 @@ the highest precedence) we previously told you about is applying.
 
 ## From the type system to evaluation order
 
-So, hey, we just described at some extent the Haskell type system. This is quite cool.
-This type system is really cool. I like it. But let's not get 
-ourselves lost in affectionate arguments and let us go to the point, that is the evaluation.
+We just described at some extent how the Haskell type system is working. This is quite cool.
+Furthermore, the type system is really cool. I like it. But let's not get 
+ourselves lost in affectionate arguments and, that is the evaluation order (I am not talking
+about evaluation of the argument but rather of the priority in building the blocks of the 
+abstract syntax tree).
 
 Because of the later precedence rule, the arguments of a function in Haskell are evaluated from
 the left to the right. That is, to actually compute `h 1 2 3`, we must first now what `h 1` is.
