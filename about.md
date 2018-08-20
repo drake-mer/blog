@@ -19,10 +19,6 @@ I am currrently working as a developer in the Paris area.
 If you are interested in my background, you can checkout my [resume][resume]. 
 For any work-related query, don't hesitate to send an email to the address below.
 
-This blog is not aimed as a profesionnal blog strictly speaking, so don't be afraid if you see
-some random rambling on programming and stuff. I am continuously working on improving it
-but information here and there could still be out of date or irrelevant.
-
 [resume]: {{site.url}}/resume/cv.pdf
 [phd-raman]: http://www.theses.fr/2014ANGE0004
 [phd-publication]: https://tel.archives-ouvertes.fr/tel-01052857/document
