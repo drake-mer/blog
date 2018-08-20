@@ -1,14 +1,12 @@
 ---
 layout: default
-title:  "Precedence order of evaluation for AST building in Haskell"
+title:  Precedence order of evaluation for AST building in Haskell
 date:   2017-10-01 19:20:34 +0200
 categories: haskell blogging
 ---
 
 ## Introduction
 
-The motivation behind this blog post are 
-[_pure_](https://en.wikipedia.org/wiki/Purely_functional_programming) :). 
 I wanted to write a page of drills for practicing monads in Haskell, and I
 wanted to be accessible, so as I started to write things about type annotations,
 I noticed that somethings here couldn't be left out and had to be written down.

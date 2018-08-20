@@ -4,17 +4,24 @@ title: Some Words about Me
 permalink: /me/
 ---
 
-I am David, I live in France, I currently work as a developer for a Cloud Provider
-near the city of Paris.
+I am David, I live currently in France, Paris.
 
-The programming languages I use the most are Haskell and Python, currently I am digging
-into Ruby and Scala. I love programming and this art never cease to amaze me.
+My first field of study was physics and I finished a [PhD][phd-raman] 
+in 2014 about greenhouse gases
+and their spectral properties. 
+You can find the [manuscript online][phd-publication].
 
-If you are interested in my background, please checkout my [resume][resume]
+I operated 3 years ago a shift in my professional activity, favoring the path of a 
+software developer.
 
-My primary field of study is physics and I finished a [PhD][phd-raman] in 2014 about greenhouse gases
-and spectral properties of such gases. The [manuscript][phd-publication] exists only in french, but you can
-checkout the articles if needed.
+I am currrently working as a developer in the Paris area.
+
+If you are interested in my background, you can checkout my [resume][resume]. 
+For any work-related query, don't hesitate to send an email to the address below.
+
+This blog is not aimed as a profesionnal blog strictly speaking, so don't be afraid if you see
+some random rambling on programming and stuff. I am continuously working on improving it
+but information here and there could still be out of date or irrelevant.
 
 [resume]: {{site.url}}/resume/cv.pdf
 [phd-raman]: http://www.theses.fr/2014ANGE0004

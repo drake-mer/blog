@@ -1,8 +1,8 @@
 ---
 layout: default
-title:  "Precedence order of evaluation for AST building in Haskell"
+title:  "3 billbooards, the movie"
 date:   2017-10-01 19:20:34 +0200
-categories: haskell blogging
+categories: cinema blogging
 ---
 
 # 3 billboards review
