@@ -16,12 +16,13 @@
 title: David's blog
 email: courrier@david-kremer.fr
 description: >- # this means to ignore newlines until "baseurl:"
-    The weblog of a developer, where I write about javascript python haskell
-    databases programming german and anything that I like in general.
+    David Kremer's personal blog. Content about mainly programming and miscellenaous stuff.
+
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://david-kremer.fr" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: 
 github_username: elijahbal
+
 
 # Build settings
 markdown: kramdown
