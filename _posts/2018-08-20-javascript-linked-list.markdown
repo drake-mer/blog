@@ -22,45 +22,7 @@ to learn javascript basics.
 programming). As a [kata](https://en.wikipedia.org/wiki/Kata_(programming)) to relearn fundamental
 data structures, it will do :)
 
-# Let's Warm Up and Do It
-
-What we need to know is:
- 
-- How to create an object.
-- How to use the `this` keyword referencing that object.
-- Some specs about the linked list API but meh :(
-- Some trivial test cases to check if the implementation is working.
-
-## Creating Objects in JavaScript
-
-We actually use the `new` keyword if I am not mistaken. Let us try something:
-
-```javascript
-
-
-// Notice That there is absolutely no return. The
-// LinkedList object constructor is just a raw function
-// with a local reference to the object this
-
-let LinkedList = function() {
-    this.next = null;
-    this.append = function (obj) {
-       this.next = obj;
-    }
-}
-```
-
-Let's check it out:
-```
-> new LinkedList()
-LinkedList { next: null, append: [Function] }
-```
-
-Ourray ! Basic object creation is working. There is a bug in the above implementation though.
-
-Hopefully, we will sort things out in the next paragraph.
-
-## Full API ?
+# Implementation
 
 I will  be inspired by the Haskell API for linked lists (haa, that lack of
 creativity. You often rely on your basic training when struggling to find new ideas, 
