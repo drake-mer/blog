@@ -7,10 +7,6 @@ categories: javascript datastructures
 
 # Why implementing linked lists in JavaScript ?
 
-Before hand, I must recall that I am a total beginner in JavaScript, so I'll do 
-my best. Do not hesitate to correct me in the comment section 
-for obvious error or small rectifications, really anything that could improve the overall quality.
-
 At least two motivations:
 
 - The first is to learn how to use javascript to implement a simple data structure.
